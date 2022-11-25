@@ -1,0 +1,5 @@
+---
+collections:
+  - name: redhat_cop.ee_utilities
+  - name: containers.podman
+...
