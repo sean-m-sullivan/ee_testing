@@ -40,6 +40,15 @@
           - name: infra.ah_configuration
           - name: infra.ee_utilities
   pre_tasks:
+    - name: Set ignore chown error
+      community.general.ini_file:
+        path: /etc/containers/storage.conf
+        section: storage.options.overlay
+        option: ignore_chown_errors
+        value: true
+        mode: '0600'
+        backup: true
+
     - name: file lookup
       debug:
         msg: "{{ lookup('file', '/etc/containers/storage.conf') }}"
