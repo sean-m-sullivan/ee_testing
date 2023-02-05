@@ -39,6 +39,11 @@
           - name: infra.controller_configuration
           - name: infra.ah_configuration
           - name: infra.ee_utilities
+  pre_tasks:
+    - name: file lookup
+      debug:
+        msg: "{{ lookup('file', '/etc/containers/storage.conf') }}"
+
   roles:
     - infra.ee_utilities.ee_builder
 ...
