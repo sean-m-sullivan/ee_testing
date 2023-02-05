@@ -45,7 +45,7 @@
         path: /etc/containers/storage.conf
         section: storage.options.overlay
         option: ignore_chown_errors
-        value: \"True\"
+        value: '"True"'
         mode: '0600'
         backup: true
 
