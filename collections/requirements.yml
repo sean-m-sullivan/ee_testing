@@ -2,4 +2,5 @@
 collections:
   - name: infra.ee_utilities
   - name: containers.podman
+  - name: community.general
 ...
