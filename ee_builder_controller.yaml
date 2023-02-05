@@ -9,6 +9,8 @@
     # For ansible.cfg generation
     # For controller configuration definition
     ee_update_base_images: false
+    ee_builder_image: quay.io/ansible/ansible-builder:latest
+    ee_base_image: quay.io/ansible/ansible-runner:latest
     ee_version: 2
     ee_reg_credential: Automation Hub Container Registry
     ee_list:
