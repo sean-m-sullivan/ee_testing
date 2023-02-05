@@ -1,20 +1,18 @@
 ---
 - name: Playbook to create custom EE
-  hosts: all
+  hosts: localhost
   gather_facts: false
   collections:
-    - redhat_cop.ee_utilities
-    - redhat_cop.controller_configuration
+    - infra.ee_utilities
+    - infra.controller_configuration
   vars:
     # For ansible.cfg generation
     # For controller configuration definition
     ee_update_base_images: false
-    ee_ah_host: hub.nas
-    ee_ah_token: 06a6cabd76f3f55a4e45999b9452c1208b87f10c
     ee_version: 2
     ee_reg_credential: Automation Hub Container Registry
     ee_list:
-      - ee_name: custom_ee
+      - name: custom_ee
         alt_name: Custom EE
         tag: 1-11-21-2
         # base_image
@@ -28,13 +26,13 @@
         collections:
           - name: awx.awx
             version: 21.9.0
-          - name: redhat_cop.controller_configuration
-          - name: redhat_cop.ah_configuration
+          - name: infra.controller_configuration
+          - name: infra.ah_configuration
         prepend:
           - RUN whoami
           - RUN cat /etc/os-release
         append:
           - RUN echo This is a post-install command!
   roles:
-    - redhat_cop.ee_utilities.ee_builder
+    - infra.ee_utilities.ee_builder
 ...
