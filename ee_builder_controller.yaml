@@ -17,24 +17,28 @@
       - name: custom_ee
         alt_name: Custom EE
         tag: 1-11-21-2
-        # base_image
         bindep:
-          - python38-requests [platform:centos-8 platform:rhel-8]
-          - python38-pyyaml [platform:centos-8 platform:rhel-8]
+          - python38-devel [platform:rpm compile]
+          - podman [platform:rpm]
         python:
           - pytz  # for schedule_rrule lookup plugin
           - python-dateutil>=2.7.0  # schedule_rrule
           - awxkit  # For import and export modules
+          - ansible-lint[lock]==6.11.0
+          - ansible-runner==2.3.1
+          - ansible-builder
+          - molecule==4.0.4
+          - molecule-podman==2.0.3
+          - paramiko==2.12.0  # https://github.com/ansible/creator-ee/issues/140
+          - jmespath==1.0.1  # needed for json_query module
         collections:
+          - name: ansible.posix
+          - name: ansible.windows
           - name: awx.awx
-            version: 21.9.0
+          - name: containers.podman
           - name: infra.controller_configuration
           - name: infra.ah_configuration
-        prepend:
-          - RUN whoami
-          - RUN cat /etc/os-release
-        append:
-          - RUN echo This is a post-install command!
+          - name: infra.ee_utilities
   roles:
     - infra.ee_utilities.ee_builder
 ...
